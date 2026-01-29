@@ -7,3 +7,32 @@ spring:
     port: 5672
     username: guest
     password: guest
+
+# Swagger config
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    tags-sorter: alpha                # Tag’larni alifbo tartibida ko‘rsatadi
+    doc-expansion: none               # Swagger’da barcha bo‘limlar yopiq holda chiqadi (collapsed)
+    try-it-out-enabled: true          # "Try it out" tugmasini o‘chiradi (foydalanuvchi swagger orqali API chaqira olmaydi)
+    default-model-expand-depth: 10    # Model (schema) larni nechta chuqurlikda expand qilishini belgilaydi
+    operations-sorter: method         # metodlarni tartib bilan ko‘rsatadi (GET, POST, PUT...)
+    display-request-duration: true    # har bir request qancha vaqt olganini ko‘rsatadi
+
+# Spring Boot Actuator config
+management:
+  endpoint:
+    health:
+      show-details: always   # health check natijasida barcha detallarni ko‘rsatish
+    metrics:
+      access: read_only
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
