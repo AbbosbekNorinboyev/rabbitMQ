@@ -13,18 +13,24 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-    public static final String QUEUE = "notification-queue";
+
+    // exchange
     public static final String EXCHANGE = "notification-exchange";
+
+    // request queue
+    public static final String QUEUE = "notification-queue";
+
+    // routing key
     public static final String ROUTING_KEY = "notification";
+
+    @Bean
+    public DirectExchange exchange() {
+        return new DirectExchange(EXCHANGE, true, false);
+    }
 
     @Bean
     public Queue queue() {
         return new Queue(QUEUE, false);
-    }
-
-    @Bean
-    public DirectExchange exchange() {
-        return new DirectExchange(EXCHANGE);
     }
 
     @Bean
